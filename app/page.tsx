@@ -35,6 +35,7 @@ export default function HomePage() {
           <AuthModal closeModal={closeModal} />
         )
       )}
+      
     </div>
   );
 }

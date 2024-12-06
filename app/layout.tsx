@@ -4,6 +4,9 @@ import "./globals.css";
 import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header/index";
 import Footer from "./components/Footer/index";
+import ScrollPosts from "./components/ScrollPosts";
+import RecentPosts from "./components/RecentPost";
+import SortPosts from "./components/SortPosts";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -31,6 +34,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >  <AuthProvider>
         <Header />
+        <RecentPosts />
+        <ScrollPosts />
+        <SortPosts />
         {children}
         <Footer/>
         </AuthProvider>
