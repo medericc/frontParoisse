@@ -9,7 +9,7 @@ interface Article {
   image_url: string;
   published_at: string;
   username: string;
-  category_id: number;
+  category_name: string;
 }
 
 const ScrollPosts: React.FC = () => {

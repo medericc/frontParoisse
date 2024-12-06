@@ -7,7 +7,7 @@ export default function CreateArticleModal({ closeModal }: { closeModal: () => v
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageURL, setImageURL] = useState("");
-  const [categoryID, setCategoryID] = useState(1); // ID de catégorie par défaut
+  const [categoryNAME, setCategoryNAME] = useState(""); // ID de catégorie par défaut
   const [error, setError] = useState("");
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -24,7 +24,7 @@ export default function CreateArticleModal({ closeModal }: { closeModal: () => v
       image_url: imageURL,
       published_at: new Date().toISOString(),
       username, // Utilisation du nom d'utilisateur récupéré automatiquement
-      category_id: categoryID,
+      category_name: categoryNAME,
     };
 
     console.log("Données envoyées :", data);
@@ -102,16 +102,22 @@ export default function CreateArticleModal({ closeModal }: { closeModal: () => v
               Catégorie
             </label>
             <select
-              id="categoryID"
-              value={categoryID}
-              onChange={(e) => setCategoryID(Number(e.target.value))}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              id="categoryNAME"
+              value={categoryNAME}
+              onChange={(e) => {
+                const selectedValue = e.target.value;
+                console.log("Valeur sélectionnée :", selectedValue);
+                setCategoryNAME(selectedValue);
+              }}
+               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               required
             >
-              <option value={1}>Catégorie 1</option>
-              <option value={2}>Catégorie 2</option>
-              <option value={3}>Catégorie 3</option>
-              <option value={4}>Catégorie 4</option>
+              <option value="Catégorie 1">Catégorie 1</option>
+<option value="Catégorie 2">Catégorie 2</option>
+<option value="Catégorie 3">Catégorie 3</option>
+<option value="Catégorie 4">Catégorie 4</option>
+<option value="Bible">Catégorie 5</option>
+
             </select>
           </div>
           <div className="flex justify-end">

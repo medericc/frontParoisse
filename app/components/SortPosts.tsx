@@ -9,14 +9,14 @@ interface Article {
   image_url: string;
   published_at: string;
   username: string;
-  category_id: number;
+  category_name: string;
 }
 
 const SortPosts: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<number | string>("all");
-  const [categories, setCategories] = useState<string[]>(["1", "2", "3", "4"]);
+  const [categories, setCategories] = useState<string[]>(["Catégorie 1", "Catégorie 2", "Catégorie 3", "Catégorie 4"]);
 
   // Fetch articles from the API
   useEffect(() => {
@@ -42,7 +42,7 @@ const SortPosts: React.FC = () => {
     setSelectedCategory(Number(event.target.value) || "1");
   };
 
-  const filteredArticles = selectedCategory === "1" ? articles : articles.filter(article => article.category_id === selectedCategory);
+  const filteredArticles = selectedCategory === "1" ? articles : articles.filter(article => article.category_name === selectedCategory);
 
   if (loading) {
     return <div className="text-center">Loading articles...</div>;
@@ -58,7 +58,7 @@ const SortPosts: React.FC = () => {
           className="p-2 border rounded-md bg-white shadow-md"
         >
           {categories.map((category, index) => (
-            <option key={index} value={category === "all" ? "all" : category}>
+            <option key={index} value={category === "Catégorie 1" ? "Catégorie 1" : category}>
               {category}
             </option>
           ))}
@@ -80,7 +80,7 @@ const SortPosts: React.FC = () => {
               />
               <h2 className="mt-4 text-lg font-bold text-gray-800">{article.title}</h2>
               <p className="text-sm text-gray-600 truncate">{article.content}</p>
-              <p className="text-sm text-gray-600 truncate">{article.category_id}</p>
+              <p className="text-sm text-gray-600 truncate">{article.category_name}</p>
               <p className="mt-2 text-xs text-gray-500">By {article.username}</p>
             </div>
           ))}

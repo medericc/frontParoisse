@@ -4,10 +4,10 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     console.log("Requête reçue :", body);
-    const { title, content, image_url, published_at, username, category_id } = body;
+    const { title, content, image_url, published_at, username, category_name } = body;
 
     // Validation côté serveur
-    if (!title || !content || !username || !category_id) {
+    if (!title || !content || !username || !category_name) {
       return NextResponse.json(
         { error: "Tous les champs requis ne sont pas remplis." },
         { status: 400 }
@@ -21,9 +21,9 @@ export async function POST(req: Request) {
         "Content-Type": "application/json",
       },
       
-      body: JSON.stringify({ title, content, image_url: image_url, published_at: published_at, username, category_id: category_id }),
+      body: JSON.stringify({ title, content, image_url: image_url, published_at: published_at, username, category_name: category_name }),
     });
-    console.log("Requête reçue :", { title, content, image_url, published_at, username, category_id });
+    console.log("Requête reçue :", { title, content, image_url, published_at, username, category_name });
 
     if (!response.ok) {
       const errorData = await response.json(); // Au lieu de .text()
